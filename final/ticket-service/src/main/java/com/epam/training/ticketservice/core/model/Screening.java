@@ -14,10 +14,10 @@ public class Screening {
     @GeneratedValue
     private Integer id;
     @ManyToOne
-    @JoinColumn(name = "MOVIE_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "movie_id", referencedColumnName = "id")
     private Movie movie;
     @ManyToOne
-    @JoinColumn(name = "ROOM_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "room_id", referencedColumnName = "id")
     private Room room;
     private LocalDateTime screeningTime;
 
