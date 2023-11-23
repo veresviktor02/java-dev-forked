@@ -18,9 +18,14 @@ public class RoomDto {
 
     @Override
     public String toString() {
-        return "Room " + name +
-                " with " + (rows * cols) + " seats, " +
-                rows + " rows and " +
-                cols + " columns";
+        return "Room "
+                + name
+                + " with "
+                + (rows * cols)
+                + " seats, "
+                + rows
+                + " rows and "
+                + cols
+                + " columns";
     }
 }

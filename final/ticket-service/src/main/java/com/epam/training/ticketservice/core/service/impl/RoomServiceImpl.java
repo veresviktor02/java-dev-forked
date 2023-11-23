@@ -19,7 +19,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public void createRoom(String name, int row, int col) throws AlreadyExistsException {
-        if(roomRepository.findByName(name).isPresent()) {
+        if (roomRepository.findByName(name).isPresent()) {
             throw new AlreadyExistsException("The room already exists.");
         } else {
             Room room = new Room(name, row, col);
@@ -29,8 +29,8 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public void updateRoom(String name, int row, int col) throws DoesNotExistException {
-        if(roomRepository.findByName(name).isPresent()) {
-            Room room =roomRepository.findByName(name).get();
+        if (roomRepository.findByName(name).isPresent()) {
+            Room room = roomRepository.findByName(name).get();
             room.setRows(row);
             room.setCols(col);
             roomRepository.save(room);
@@ -41,7 +41,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public void deleteRoom(String name) throws DoesNotExistException {
-        if(roomRepository.findByName(name).isPresent()) {
+        if (roomRepository.findByName(name).isPresent()) {
             Room room = roomRepository.findByName(name).get();
             roomRepository.delete(room);
         } else {

@@ -24,9 +24,9 @@ public class ScreeningDto {
 
     @Override
     public String toString() {
-        return movieDto.toString() + " is screened in room " +
-                roomDto.getName() + ", at " +
-                screeningTime.format(
+        return movieDto.toString() + " is screened in room "
+                + roomDto.getName() + ", at "
+                + screeningTime.format(
                         DateTimeFormatter.ofPattern(
                                 "yyyy-MM-dd HH:mm"
                         )

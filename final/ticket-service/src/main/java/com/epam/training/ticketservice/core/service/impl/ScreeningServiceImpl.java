@@ -25,8 +25,10 @@ public class ScreeningServiceImpl implements ScreeningService {
     private final ScreeningRepository screeningRepository;
     private final MovieRepository movieRepository;
     private final RoomRepository roomRepository;
+
     @Override
-    public void createScreening(String movie, String room, LocalDateTime screeningTime) throws DoesNotExistException, OverlappingException, BreakPeriodException {
+    public void createScreening(String movie, String room, LocalDateTime screeningTime)
+            throws DoesNotExistException, OverlappingException, BreakPeriodException {
         Optional<Movie> movieOptional = movieRepository.findByName(movie);
         Optional<Room> roomOptional = roomRepository.findByName(room);
         checkMovieAndRoomExistence(movieOptional, roomOptional);
@@ -35,7 +37,8 @@ public class ScreeningServiceImpl implements ScreeningService {
         screeningRepository.save(returnScreening);
     }
 
-    private void canCreateScreening(Screening returnScreening) throws OverlappingException, BreakPeriodException {
+    private void canCreateScreening(Screening returnScreening)
+            throws OverlappingException, BreakPeriodException {
         Optional<Screening> screeningList = screeningRepository.findScreeningByRoom(returnScreening.getRoom());
 
         if (screeningList.isEmpty()) {
@@ -63,7 +66,9 @@ public class ScreeningServiceImpl implements ScreeningService {
                     || isEqual(screeningEnd, iteratorEnd)) {
                 throw new OverlappingException("There is an overlapping screening");
             } else if (isScreeningBeforeIteratorBreak || isScreeningAfterIteratorEnd) {
-                throw new BreakPeriodException("This would start in the break period after another screening in this room");
+                throw new BreakPeriodException(
+                        "This would start in the break period after another screening in this room"
+                );
             }
         }
     }
@@ -104,7 +109,7 @@ public class ScreeningServiceImpl implements ScreeningService {
         Optional<Movie> movieOptional = movieRepository.findByName(movie);
         Optional<Room> roomOptional = roomRepository.findByName(room);
         checkMovieAndRoomExistence(movieOptional, roomOptional);
-        if(screeningRepository.findScreeningByMovieAndRoomAndScreeningTime(
+        if (screeningRepository.findScreeningByMovieAndRoomAndScreeningTime(
                 movieOptional.get(),
                 roomOptional.get(),
                 screeningTime

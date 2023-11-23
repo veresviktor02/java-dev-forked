@@ -18,9 +18,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<UserDto> login(String name, String password) {
-        Optional<User> userOptional =userRepository.findByUsername(name);
+        Optional<User> userOptional = userRepository.findByUsername(name);
 
-        if(userOptional.isPresent() && isValidCredentials(userOptional.get(), password)) {
+        if (userOptional.isPresent() && isValidCredentials(userOptional.get(), password)) {
             loggedInUser = new UserDto(userOptional.get().getUsername(), userOptional.get().getRole());
 
             return describeAccount();
@@ -31,8 +31,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isValidCredentials(User user, String password) {
-        return user.getPassword().equals(password) &&
-                user.getRole().equals(User.Role.ADMIN);
+        return user.getPassword().equals(password)
+                && user.getRole().equals(User.Role.ADMIN);
     }
 
     @Override

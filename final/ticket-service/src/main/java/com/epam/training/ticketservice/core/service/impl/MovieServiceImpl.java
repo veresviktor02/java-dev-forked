@@ -21,7 +21,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public void createMovie(String name, String genre, int length)
             throws AlreadyExistsException {
-        if(movieRepository.findByName(name).isPresent()) {
+        if (movieRepository.findByName(name).isPresent()) {
             throw new AlreadyExistsException("The movie already exists.");
         } else {
             Movie movie = new Movie(name, genre, length);
@@ -33,7 +33,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public void updateMovie(String name, String genre, int length)
             throws DoesNotExistException {
-        if(movieRepository.findByName(name).isPresent()) {
+        if (movieRepository.findByName(name).isPresent()) {
             Movie movie = movieRepository.findByName(name).get();
             movie.setGenre(genre);
             movie.setLength(length);
@@ -46,7 +46,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public void deleteMovie(String name)
             throws DoesNotExistException {
-        if(movieRepository.findByName(name).isPresent()) {
+        if (movieRepository.findByName(name).isPresent()) {
             Movie movie = movieRepository.findByName(name).get();
             movieRepository.delete(movie);
         } else {
