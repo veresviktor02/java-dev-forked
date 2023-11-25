@@ -56,7 +56,6 @@ public class RoomCommand {
         return "The room is deleted";
     }
 
-    @ShellMethodAvailability("isAvailable")
     @ShellMethod(key = "list rooms", value = "Lists all rooms")
     public String listRooms() {
         List<RoomDto> roomDtoList = roomService.roomList();

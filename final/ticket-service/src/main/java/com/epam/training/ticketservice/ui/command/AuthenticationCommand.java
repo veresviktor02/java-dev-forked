@@ -22,7 +22,7 @@ public class AuthenticationCommand {
                 .orElse("There is no user logged in.");
     }
 
-    @ShellMethod(key = "sign in priviliged", value = "User login")
+    @ShellMethod(key = "sign in privileged", value = "User login")
     public String login(String username, String password) {
         return userService.login(username, password)
                 .map(userDto -> userDto.username() + " successfully signed in")
@@ -34,7 +34,7 @@ public class AuthenticationCommand {
         Optional<UserDto> userDtoOptional = userService.describeAccount();
         if (userDtoOptional.isPresent()) {
             if (userDtoOptional.get().role().equals(User.Role.ADMIN)) {
-                return "Signed in with priviliged account '" + userDtoOptional.get().username() + "'";
+                return "Signed in with privileged account '" + userDtoOptional.get().username() + "'";
             }
 
             return "Signed in with user '" + userDtoOptional.get().username() + "'";
